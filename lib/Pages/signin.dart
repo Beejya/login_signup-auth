@@ -19,7 +19,7 @@ class _signinState extends State<signin> {
   final TextEditingController passwordController = TextEditingController();
 
   login() async {
-    var url = "http://172.16.18.6/clothstore/login.php";
+    var url = "http://192.168.0.77/clothstore/login.php";
     var res = await http.post(Uri.parse(url), body: {
       'email': emailController.text,
       'password': passwordController.text,

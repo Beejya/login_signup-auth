@@ -1,5 +1,13 @@
-import 'package:flutter/foundation.dart';
+// ignore_for_file: unused_field
+
+import 'dart:convert';
+
+import 'package:clothywave/Pages/all_product.dart';
+import 'package:clothywave/Pages/kids_product.dart';
+import 'package:clothywave/Pages/men_product.dart';
+import 'package:clothywave/Pages/women_product.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -12,193 +20,91 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.home,
-                color: Colors.black,
-              ),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: Icon(
-                Icons.shopping_cart,
-                color: Colors.black,
-              ),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: Icon(
-                Icons.notifications,
-                color: Colors.black,
-              ),
-              onPressed: () {},
-            )
-          ],
-          backgroundColor: Colors.blue,
-          title: Text(
-            "Clothywave",
-            style: TextStyle(color: Colors.black),
-          ),
-          automaticallyImplyLeading: false,
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                      suffixIcon: Icon(Icons.search),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      hintText: "What are you looking for?"),
+      child: DefaultTabController(
+        length: 4,
+        child: Scaffold(
+          appBar: AppBar(
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(
+                  Icons.home,
+                  color: Colors.black,
                 ),
+                onPressed: () {},
               ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Container(
-                      child: Text("Category",
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold)),
-                    ),
-                  )
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: 100,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              width: 100,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.lightBlue),
-                              child: Center(
-                                child: Text(
-                                  "For Mens",
-                                  style: TextStyle(
-                                      fontSize: 16, color: Colors.black),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              width: 100,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.lightBlue),
-                              child: Center(
-                                child: Text(
-                                  "For Women",
-                                  style: TextStyle(
-                                      fontSize: 16, color: Colors.black),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              width: 100,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.lightBlue),
-                              child: Center(
-                                child: Text(
-                                  "For Kids",
-                                  style: TextStyle(
-                                      fontSize: 16, color: Colors.black),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              width: 100,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.lightBlue),
-                              child: Center(
-                                child: Text(
-                                  "For All",
-                                  style: TextStyle(
-                                      fontSize: 16, color: Colors.black),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              width: 100,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.lightBlue),
-                              child: Center(
-                                child: Text(
-                                  "Discounted",
-                                  style: TextStyle(
-                                      fontSize: 16, color: Colors.black),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              width: 100,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.lightBlue),
-                              child: Center(
-                                child: Text(
-                                  "Trandings",
-                                  style: TextStyle(
-                                      fontSize: 16, color: Colors.black),
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+              IconButton(
+                icon: Icon(
+                  Icons.shopping_cart,
+                  color: Colors.black,
                 ),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: Icon(
+                  Icons.notifications,
+                  color: Colors.black,
+                ),
+                onPressed: () {},
               )
             ],
+            backgroundColor: Colors.blue,
+            title: Text(
+              "Clothywave",
+              style: TextStyle(color: Colors.black),
+            ),
+            automaticallyImplyLeading: false,
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: TextField(
+                    decoration: InputDecoration(
+                        suffixIcon: Icon(Icons.search),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        hintText: "What are you looking for?"),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 30),
+                  child: Container(
+                    child: Text("Category",
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold)),
+                  ),
+                ),
+                TabBar(
+                    labelColor: Colors.blue,
+                    unselectedLabelColor: Colors.black,
+                    tabs: [
+                      Tab(
+                        text: ("All"),
+                      ),
+                      Tab(
+                        text: ("Men"),
+                      ),
+                      Tab(
+                        text: ("Women"),
+                      ),
+                      Tab(
+                        text: ("Kids"),
+                      ),
+                    ]),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.74,
+                  child: TabBarView(children: [
+                    AllProduct(),
+                    MenProduct(),
+                    WomenProduct(),
+                    KidsProduct(),
+                  ]),
+                )
+              ],
+            ),
           ),
         ),
       ),

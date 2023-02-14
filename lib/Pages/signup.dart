@@ -22,7 +22,7 @@ class _signupState extends State<signup> {
   TextEditingController passwordController = TextEditingController();
 
   Future register() async {
-    var url = "http://172.16.18.6/clothstore/signup.php";
+    var url = "http:// 192.168.0.77/clothstore/signup.php";
     var response = await http.post(Uri.parse(url), body: {
       'name': nameController.text,
       'email': emailController.text,
@@ -233,23 +233,6 @@ class _signupState extends State<signup> {
                   SizedBox(
                     height: 10,
                   ),
-                  // Container(
-                  //   width: 350,
-                  //   child: TextFormField(
-                  //     validator: (value) {
-                  //       if (value != null && value.length < 7) {
-
-                  //         return 'Enter minimum 7 character';
-                  //       }
-                  //     },
-                  //     decoration: InputDecoration(
-                  //       suffixIcon: Icon(Icons.lock),
-                  //       border: OutlineInputBorder(
-                  //           borderRadius: BorderRadius.circular(20)),
-                  //       hintText: 'Confirm your Password',
-                  //     ),
-                  //   ),
-                  // ),
                   SizedBox(
                     height: 20,
                   ),
@@ -264,11 +247,6 @@ class _signupState extends State<signup> {
                         ))),
                         onPressed: () {
                           register();
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //       builder: (context) => const HomePage()),
-                          // );
                         },
                         child: Text(
                           "Sign Up",
@@ -312,27 +290,3 @@ class _signupState extends State<signup> {
                 ])))));
   }
 }
-
-//   Future RegistrationUser() async {
-//     var APIURL = 'http://localhost/clothstore/signup.php';
-
-//     Map mapedata = {
-//       'name': nameController.text,
-//       'email': emailController.text,
-//       'contact': contactController.text,
-//       'address': addressController.text,
-//       'password': passwordController.text
-//     };
-
-//     print('JSON DATA: ${mapedata}');
-
-//     http.Response response = await http.post(
-//         Uri.parse(
-//           APIURL,
-//         ),
-//         body: mapedata);
-
-//     var data = jsonDecode(response.body);
-//     print('DATA: ${data}');
-//   }
-// }
