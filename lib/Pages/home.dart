@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:clothywave/Pages/all_product.dart';
+import 'package:clothywave/Pages/cart_page.dart';
 import 'package:clothywave/Pages/kids_product.dart';
 import 'package:clothywave/Pages/men_product.dart';
 import 'package:clothywave/Pages/women_product.dart';
@@ -37,7 +38,12 @@ class _HomePageState extends State<HomePage> {
                   Icons.shopping_cart,
                   color: Colors.black,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Cart()),
+                  );
+                },
               ),
               IconButton(
                 icon: Icon(

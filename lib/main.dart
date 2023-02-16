@@ -1,7 +1,10 @@
 import 'package:clothywave/Pages/signin.dart';
+import 'package:clothywave/controller/productController.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void main() {
+  Get.put(ProductController());
   runApp(const MyApp());
 }
 
