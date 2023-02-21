@@ -1,6 +1,7 @@
 import 'package:clothywave/Model/product.dart';
 import 'package:clothywave/Pages/home.dart';
 import 'package:clothywave/Pages/productdetailpage.dart';
+import 'package:clothywave/Services/Base_url.dart';
 import 'package:clothywave/controller/productController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,27 +23,27 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage()),
-            );
-          },
-          icon: Icon(Icons.arrow_back),
-          color: Colors.black87,
-        ),
-        title: Column(
-          children: [
-            Text(
-              "Cart",
-              style: TextStyle(color: Colors.black),
-            ),
-          ],
-        ),
-        automaticallyImplyLeading: false,
-      ),
+      // appBar: AppBar(
+      //   leading: IconButton(
+      //     onPressed: () {
+      //       Navigator.push(
+      //         context,
+      //         MaterialPageRoute(builder: (context) => HomePage()),
+      //       );
+      //     },
+      //     icon: Icon(Icons.arrow_back),
+      //     color: Colors.black87,
+      //   ),
+      //   title: Column(
+      //     children: [
+      //       Text(
+      //         "Cart",
+      //         style: TextStyle(color: Colors.black),
+      //       ),
+      //     ],
+      //   ),
+      //   automaticallyImplyLeading: false,
+      // ),
       body: SingleChildScrollView(
         child: Column(
           children: productController.carts.map((product) {
@@ -61,8 +62,7 @@ class _CartState extends State<Cart> {
                 child: ListTile(
                   tileColor: Colors.lightBlueAccent,
                   leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "http://192.168.0.77/clothstore/${product.image}"),
+                    backgroundImage: NetworkImage(baseUrl + "${product.image}"),
                   ),
                   title: Text(product.name),
                   subtitle: Text("Rs: ${product.price}"),

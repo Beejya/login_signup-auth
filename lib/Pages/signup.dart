@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
+import '../Services/Base_url.dart';
+
 class signup extends StatefulWidget {
   signup({Key? key}) : super(key: key);
 
@@ -22,7 +24,7 @@ class _signupState extends State<signup> {
   TextEditingController passwordController = TextEditingController();
 
   Future register() async {
-    var url = "http://192.168.0.77/clothstore/signup.php";
+    var url = baseUrl + "signup.php";
     var response = await http.post(Uri.parse(url), body: {
       'name': nameController.text,
       'email': emailController.text,

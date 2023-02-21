@@ -1,3 +1,5 @@
+import 'package:clothywave/Pages/payment_page.dart';
+import 'package:clothywave/Services/Base_url.dart';
 import 'package:clothywave/controller/cartController.dart';
 import 'package:clothywave/controller/productController.dart';
 import 'package:flutter/material.dart';
@@ -47,8 +49,7 @@ class _ProductDetailState extends State<ProductDetail> {
               children: [
                 SizedBox(
                   child: Image(
-                    image: NetworkImage(
-                        "http://192.168.0.77/clothstore/${widget.product.image}"),
+                    image: NetworkImage(baseUrl + "${widget.product.image}"),
                     height: 300,
                     width: 300,
                     fit: BoxFit.cover,
@@ -146,6 +147,7 @@ class _ProductDetailState extends State<ProductDetail> {
                         onPressed: () {
                           setState(() {
                             if (counter > 1) counter--;
+                            getTotalPrice(counter);
                           });
                         },
                         icon: Icon(Icons.remove)),
@@ -188,7 +190,15 @@ class _ProductDetailState extends State<ProductDetail> {
                       child: SizedBox(
                         width: 350,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Payment(
+                                        totalCost: total.toString(),
+                                      )),
+                            );
+                          },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.lightBlueAccent,
                               side: BorderSide(width: 3, color: Colors.white),

@@ -1,14 +1,9 @@
-// ignore_for_file: unused_field
-
-import 'dart:convert';
-
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:clothywave/Pages/all_product.dart';
-import 'package:clothywave/Pages/cart_page.dart';
 import 'package:clothywave/Pages/kids_product.dart';
 import 'package:clothywave/Pages/men_product.dart';
 import 'package:clothywave/Pages/women_product.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -18,70 +13,54 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List imageList = [
+    {"id": 1, "image_path": "Assets/images/cloth1.jpeg"},
+    {"id": 2, "image_path": "Assets/images/cloth2.jpg"},
+    {"id": 3, "image_path": "Assets/images/cloth3.jpeg"},
+  ];
+
+  final CarouselController carouselCOntroller = CarouselController();
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: DefaultTabController(
         length: 4,
         child: Scaffold(
-          appBar: AppBar(
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(
-                  Icons.home,
-                  color: Colors.black,
-                ),
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.shopping_cart,
-                  color: Colors.black,
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Cart()),
-                  );
-                },
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.notifications,
-                  color: Colors.black,
-                ),
-                onPressed: () {},
-              )
-            ],
-            backgroundColor: Colors.blue,
-            title: Text(
-              "Clothywave",
-              style: TextStyle(color: Colors.black),
-            ),
-            automaticallyImplyLeading: false,
-          ),
           body: SingleChildScrollView(
+            // physics: NeverScrollableScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                        suffixIcon: Icon(Icons.search),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
+                Stack(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        print(currentIndex);
+                      },
+                      child: CarouselSlider(
+                        items: imageList
+                            .map((item) => Image.asset(
+                                  item['image_path'],
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
+                                ))
+                            .toList(),
+                        carouselController: carouselCOntroller,
+                        options: CarouselOptions(
+                          scrollPhysics: BouncingScrollPhysics(),
+                          autoPlay: true,
+                          aspectRatio: 2,
+                          viewportFraction: 1,
+                          onPageChanged: (index, reason) {
+                            setState(() {
+                              currentIndex = index;
+                            });
+                          },
                         ),
-                        hintText: "What are you looking for?"),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 30),
-                  child: Container(
-                    child: Text("Category",
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold)),
-                  ),
+                      ),
+                    )
+                  ],
                 ),
                 TabBar(
                     labelColor: Colors.blue,

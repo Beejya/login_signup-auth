@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:clothywave/Pages/Home..dart';
 import 'package:clothywave/Pages/forgetpassword.dart';
 import 'package:clothywave/Pages/home.dart';
 import 'package:clothywave/Pages/signup.dart';
@@ -45,7 +46,7 @@ class _signinState extends State<signin> {
           fontSize: 16.0);
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => HomePage()),
+        MaterialPageRoute(builder: (context) => Home()),
       );
       print("sucess");
     } else {

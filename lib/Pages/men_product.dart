@@ -1,11 +1,13 @@
 import 'dart:convert';
 
 import 'package:clothywave/Pages/productdetailpage.dart';
+import 'package:clothywave/Services/Base_url.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_getx_widget.dart';
 import 'package:http/http.dart' as http;
 
 import '../Model/product.dart';
+import '../controller/favouriteController.dart';
 import '../controller/productController.dart';
 
 class MenProduct extends StatefulWidget {
@@ -20,8 +22,7 @@ class _MenProductState extends State<MenProduct> {
   List<Product> products = [];
 
   Future<String> getProductData() async {
-    var response = await http
-        .get(Uri.parse("http://192.168.0.77/clothstore/men_category.php"));
+    var response = await http.get(Uri.parse(baseUrl + "men_category.php"));
     setState(() {
       products = productFromJson(response.body);
       // productdata = json.decode(response.body);
@@ -75,7 +76,7 @@ class _MenProductState extends State<MenProduct> {
                               topLeft: Radius.circular(16),
                               topRight: Radius.circular(16)),
                           child: Image.network(
-                            "http://192.168.0.77/clothstore/${products[index].image}",
+                            baseUrl + "${products[index].image}",
                             height: 200,
                             width: double.infinity,
                             fit: BoxFit.cover,
@@ -115,10 +116,32 @@ class _MenProductState extends State<MenProduct> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  IconButton(
-                                      onPressed: () {},
-                                      icon:
-                                          Icon(Icons.favorite_border_outlined)),
+                                  GetX<FavouriteController>(
+                                      builder: (controller) {
+                                    return IconButton(
+                                        onPressed: () {
+                                          if (!controller.checkfavourite(
+                                              product: products[index])) {
+                                            controller.addTofavourite(
+                                                product: products[index]);
+                                          } else {
+                                            controller.removeTofavourite(
+                                                product: products[index]);
+                                          }
+
+                                          setState(() {});
+                                        },
+                                        icon: Icon(
+                                          controller.checkfavourite(
+                                                  product: products[index])
+                                              ? Icons.favorite
+                                              : Icons.favorite_outline_outlined,
+                                          color: controller.checkfavourite(
+                                                  product: products[index])
+                                              ? Colors.red
+                                              : null,
+                                        ));
+                                  }),
                                   GetX<ProductController>(
                                       builder: (controller) {
                                     return IconButton(
