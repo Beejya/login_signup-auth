@@ -23,27 +23,6 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   leading: IconButton(
-      //     onPressed: () {
-      //       Navigator.push(
-      //         context,
-      //         MaterialPageRoute(builder: (context) => HomePage()),
-      //       );
-      //     },
-      //     icon: Icon(Icons.arrow_back),
-      //     color: Colors.black87,
-      //   ),
-      //   title: Column(
-      //     children: [
-      //       Text(
-      //         "Cart",
-      //         style: TextStyle(color: Colors.black),
-      //       ),
-      //     ],
-      //   ),
-      //   automaticallyImplyLeading: false,
-      // ),
       body: SingleChildScrollView(
         child: Column(
           children: productController.carts.map((product) {
@@ -60,9 +39,12 @@ class _CartState extends State<Cart> {
                   );
                 },
                 child: ListTile(
-                  tileColor: Colors.lightBlueAccent,
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(baseUrl + "${product.image}"),
+                  leading: Container(
+                    child: Image.network(
+                      baseUrl + "${product.image}",
+                      height: 100,
+                      width: 100,
+                    ),
                   ),
                   title: Text(product.name),
                   subtitle: Text("Rs: ${product.price}"),
