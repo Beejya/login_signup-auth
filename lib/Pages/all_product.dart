@@ -19,7 +19,7 @@ class AllProduct extends StatefulWidget {
 class _AllProductState extends State<AllProduct> {
   List<Product> products = [];
   Future<String> getProductData() async {
-    var response = await http.get(Uri.parse(baseUrl + "imagelist.php"));
+    var response = await http.get(Uri.parse(baseUrl + "allproduct.php"));
     setState(() {
       products = productFromJson(response.body);
     });

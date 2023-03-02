@@ -18,14 +18,12 @@ class MenProduct extends StatefulWidget {
 }
 
 class _MenProductState extends State<MenProduct> {
-  // List productdata = [];
   List<Product> products = [];
 
   Future<String> getProductData() async {
     var response = await http.get(Uri.parse(baseUrl + "men_category.php"));
     setState(() {
       products = productFromJson(response.body);
-      // productdata = json.decode(response.body);
     });
     return "Sucess";
   }

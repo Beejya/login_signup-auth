@@ -23,7 +23,6 @@ class _KidsProductState extends State<KidsProduct> {
   Future<String> getProductData() async {
     var response = await http.get(Uri.parse(baseUrl + "kids_category.php"));
     setState(() {
-      // productdata = json.decode(response.body);
       products = productFromJson(response.body);
     });
     return "Sucess";
