@@ -46,19 +46,57 @@ class _PaymentState extends State<Payment> {
               SizedBox(
                 height: 20,
               ),
-              TextFormField(
-                controller: phoneController,
-                keyboardType: TextInputType.phone,
-                decoration: InputDecoration(labelText: "Phone Number"),
+              Container(
+                height: 100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey[200],
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: "Enter the delivery address",
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+              SizedBox(height: 30),
+              Container(
+                height: 60,
+                width: 340,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey[300],
+                ),
+                child: TextField(
+                  controller: phoneController,
+                  keyboardType: TextInputType.phone,
+                  decoration: InputDecoration(
+                    hintText: "Enter phone number for Khalti payment",
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                    border: InputBorder.none,
+                  ),
+                ),
               ),
               SizedBox(
                 height: 10,
               ),
-              TextFormField(
-                controller: pinCodeController,
-                keyboardType: TextInputType.number,
-                obscureText: true,
-                decoration: InputDecoration(labelText: "Pin Code"),
+              Container(
+                height: 60,
+                width: 340,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey[300],
+                ),
+                child: TextField(
+                  controller: pinCodeController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    hintText: "Enter pin code for Khalti payment",
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                    border: InputBorder.none,
+                  ),
+                ),
               ),
               SizedBox(
                 height: 30,

@@ -65,7 +65,7 @@ class _MenProductState extends State<MenProduct> {
               child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: Colors.lightBlueAccent),
+                      color: Colors.grey[200]),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

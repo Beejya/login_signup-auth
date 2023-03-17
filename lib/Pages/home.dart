@@ -38,25 +38,31 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         print(currentIndex);
                       },
-                      child: CarouselSlider(
-                        items: imageList
-                            .map((item) => Image.asset(
-                                  item['image_path'],
-                                  fit: BoxFit.cover,
-                                  width: double.infinity,
-                                ))
-                            .toList(),
-                        carouselController: carouselCOntroller,
-                        options: CarouselOptions(
-                          scrollPhysics: BouncingScrollPhysics(),
-                          autoPlay: true,
-                          aspectRatio: 2,
-                          viewportFraction: 1,
-                          onPageChanged: (index, reason) {
-                            setState(() {
-                              currentIndex = index;
-                            });
-                          },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 200,
+                          child: CarouselSlider(
+                            items: imageList
+                                .map((item) => Image.asset(
+                                      item['image_path'],
+                                      fit: BoxFit.cover,
+                                      width: double.infinity,
+                                    ))
+                                .toList(),
+                            carouselController: carouselCOntroller,
+                            options: CarouselOptions(
+                              scrollPhysics: BouncingScrollPhysics(),
+                              autoPlay: true,
+                              aspectRatio: 2,
+                              viewportFraction: 1,
+                              onPageChanged: (index, reason) {
+                                setState(() {
+                                  currentIndex = index;
+                                });
+                              },
+                            ),
+                          ),
                         ),
                       ),
                     )

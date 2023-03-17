@@ -22,7 +22,6 @@ class _WomenProductState extends State<WomenProduct> {
     var response = await http.get(Uri.parse(baseUrl + "Women_category.php"));
     setState(() {
       products = productFromJson(response.body);
-      // productdata = json.decode(response.body);
     });
     return "Sucess";
   }
@@ -64,7 +63,7 @@ class _WomenProductState extends State<WomenProduct> {
               child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: Colors.lightBlueAccent),
+                      color: Colors.grey[200]),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

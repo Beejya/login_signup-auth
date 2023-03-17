@@ -56,7 +56,7 @@ class _ProductDetailState extends State<ProductDetail> {
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 15,
                 ),
                 Row(
                   children: [
@@ -80,7 +80,7 @@ class _ProductDetailState extends State<ProductDetail> {
                   ],
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 15,
                 ),
                 Row(
                   children: [
@@ -104,7 +104,7 @@ class _ProductDetailState extends State<ProductDetail> {
                   ],
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 15,
                 ),
                 Row(
                   children: [
@@ -120,9 +120,6 @@ class _ProductDetailState extends State<ProductDetail> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 10,
-                ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 45),
                   child: Text(
@@ -131,12 +128,36 @@ class _ProductDetailState extends State<ProductDetail> {
                     maxLines: 30,
                   ),
                 ),
+                SizedBox(
+                  height: 25,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 45),
+                      child: Text(
+                        "Aviliable quantity:",
+                        style: TextStyle(
+                            color: Colors.black38,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                    Container(
+                      child: Text(
+                        widget.product.quantity,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                    ),
+                  ],
+                ),
                 Row(
                   children: <Widget>[
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 45),
                       child: Text(
-                        "Quantity",
+                        "Quantity to buy:",
                         style: TextStyle(
                             color: Colors.black38,
                             fontSize: 20,
@@ -168,7 +189,7 @@ class _ProductDetailState extends State<ProductDetail> {
                     Container(
                         padding: EdgeInsets.symmetric(horizontal: 45),
                         child: Text(
-                          "Total Price",
+                          "Total Price:",
                           style: TextStyle(
                               color: Colors.black38,
                               fontSize: 20,

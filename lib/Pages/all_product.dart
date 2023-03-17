@@ -64,7 +64,7 @@ class _AllProductState extends State<AllProduct> {
               child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: Colors.lightBlueAccent),
+                      color: Colors.grey[200]),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -76,7 +76,7 @@ class _AllProductState extends State<AllProduct> {
                             baseUrl + "${products[index].image}",
                             height: 200,
                             width: double.infinity,
-                            fit: BoxFit.cover,
+                            fit: BoxFit.fill,
                           ),
                         ),
                         Padding(
