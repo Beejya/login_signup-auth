@@ -40,7 +40,17 @@ class _ProductDetailState extends State<ProductDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Produt Detail")),
+        appBar: AppBar(
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.black),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            backgroundColor: Colors.grey[200],
+            elevation: 0,
+            title: Text(
+              "Produt Detail",
+              style: TextStyle(color: Colors.black),
+            )),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
@@ -118,15 +128,18 @@ class _ProductDetailState extends State<ProductDetail> {
                             fontWeight: FontWeight.w600),
                       ),
                     ),
+                    Flexible(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 45),
+                        child: Text(
+                          widget.product.description,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                          maxLines: 30,
+                        ),
+                      ),
+                    ),
                   ],
-                ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 45),
-                  child: Text(
-                    widget.product.description,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                    maxLines: 30,
-                  ),
                 ),
                 SizedBox(
                   height: 25,
@@ -177,9 +190,37 @@ class _ProductDetailState extends State<ProductDetail> {
                     new IconButton(
                         onPressed: () {
                           setState(() {
-                            counter++;
-                            getTotalPrice(counter);
+                            if (counter < int.parse(widget.product.quantity)) {
+                              counter++;
+                              getTotalPrice(counter);
+                            } else {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text("Maximum quantity reached"),
+                                      content: Text(
+                                          "You cann't add more than aviliable product "),
+                                      actions: [
+                                        TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text("Ok"))
+                                      ],
+                                    );
+                                  });
+                            }
                           });
+
+                          // setState(()
+                          // {
+
+                          //   counter++;
+                          //   getTotalPrice(counter);
+                          // }
+
+                          // );
                         },
                         icon: Icon(Icons.add))
                   ],

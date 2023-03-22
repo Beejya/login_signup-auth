@@ -1,16 +1,15 @@
-import 'package:clothywave/Model/product.dart';
 import 'package:clothywave/Pages/cart_page.dart';
 import 'package:clothywave/Pages/home.dart';
 import 'package:clothywave/Pages/profile.dart';
 import 'package:clothywave/Pages/searchpage.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import '../Services/Base_url.dart';
+
 import 'favourite.dart';
-import 'package:http/http.dart' as http;
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();
@@ -45,13 +44,11 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.blue,
-        shadowColor: Colors.lightBlueAccent,
-        elevation: 20,
-        title: const Text(
-          'Clothywave',
+        backgroundColor: Colors.grey[200],
+        elevation: 0,
+        title: Text(
+          "Clothywave",
           style: TextStyle(
               color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
         ),
@@ -60,7 +57,10 @@ class _HomeState extends State<Home> {
               onPressed: () {
                 Navigator.of(context).push(_createRoute());
               },
-              icon: Icon(Icons.search))
+              icon: Icon(
+                Icons.search,
+                color: Colors.black,
+              ))
         ],
         automaticallyImplyLeading: false,
       ),

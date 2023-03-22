@@ -13,113 +13,104 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(left: 15, top: 20, right: 15),
-      child: GestureDetector(
-        onTap: () {},
-        child: ListView(
-          children: [
-            Center(
-              child: Stack(
-                children: [
-                  Container(
-                    width: 200,
-                    height: 200,
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 4, color: Colors.white),
-                        boxShadow: [
-                          BoxShadow(
-                              spreadRadius: 2,
-                              blurRadius: 10,
-                              color: Colors.black.withOpacity(0.1))
-                        ],
-                        // shape: BoxShape.circle,
-                        image: DecorationImage(
-                            image: AssetImage("Assets/images/cloth1.jpeg"),
-                            fit: BoxFit.fill)),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                          // shape: BoxShape.circle,
-                          border: Border.all(width: 4, color: Colors.white),
-                          color: Colors.grey),
-                      child: Icon(
-                        Icons.edit,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
+    return SingleChildScrollView(
+      child: Container(
+          child: Column(
+        children: [
+          Container(
+            height: 200,
+            width: 200,
+            color: Colors.red,
+            child: Text("image"),
+          ),
+          Text("Bijay"),
+          Text("Bijaykc@gmail.com"),
+          ElevatedButton(onPressed: () {}, child: Text("Edit")),
+          Divider(
+            thickness: 3,
+          ),
+          ListTile(
+            leading: Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(200),
+                  color: Colors.grey[300]),
+              child: Icon(Icons.person),
+            ),
+            title: Text("Profile"),
+            trailing: Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: Colors.grey.withOpacity(0.1),
               ),
+              child: Icon(Icons.arrow_right),
             ),
-            SizedBox(
-              height: 10,
+          ),
+          ListTile(
+            leading: Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(200),
+                  color: Colors.grey[300]),
+              child: Icon(Icons.settings),
             ),
-            Container(
-              width: 300,
-              height: 50,
-              child: ElevatedButton(
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text("My account"), Icon(Icons.person)],
-                  )),
+            title: Text("Setting"),
+            trailing: Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: Colors.grey.withOpacity(0.1),
+              ),
+              child: Icon(Icons.arrow_right),
             ),
-            SizedBox(
-              height: 10,
+          ),
+          ListTile(
+            leading: Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(200),
+                  color: Colors.grey[300]),
+              child: Icon(Icons.help),
             ),
-            Container(
-              width: 300,
-              height: 50,
-              child: ElevatedButton(
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("My Notification"),
-                      Icon(Icons.notifications)
-                    ],
-                  )),
+            title: Text("Help"),
+            trailing: Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: Colors.grey.withOpacity(0.1),
+              ),
+              child: Icon(Icons.arrow_right),
             ),
-            SizedBox(
-              height: 10,
+          ),
+          ListTile(
+            leading: Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(200),
+                  color: Colors.grey[300]),
+              child: Icon(Icons.logout),
             ),
-            Container(
-              width: 300,
-              height: 50,
-              child: ElevatedButton(
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text("My Settings"), Icon(Icons.settings)],
-                  )),
+            title: Text("Log Out"),
+            trailing: Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: Colors.grey.withOpacity(0.1),
+              ),
+              child: Icon(Icons.arrow_right),
             ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              width: 300,
-              height: 50,
-              child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => signin()),
-                    );
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text("Log Out"), Icon(Icons.login)],
-                  )),
-            ),
-          ],
-        ),
-      ),
+          )
+        ],
+      )),
     );
   }
 }

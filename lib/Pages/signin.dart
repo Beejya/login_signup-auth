@@ -7,6 +7,7 @@ import 'package:clothywave/Pages/signup.dart';
 import 'package:clothywave/Services/Base_url.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class signin extends StatefulWidget {
@@ -31,19 +32,20 @@ class _signinState extends State<signin> {
     if (!isValid) {
       return;
     }
-
     disposee();
-
     var success = data["success"];
     if (success) {
+      String userName = data['user']['name'];
       Fluttertoast.showToast(
-          msg: "User sucessfully\n Logged in ",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 3,
-          backgroundColor: Colors.green,
-          textColor: Colors.white,
-          fontSize: 16.0);
+        msg: "User sucessfully\n Logged in ",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 5,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      // ignore: use_build_context_synchronously
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => Home()),
@@ -51,8 +53,7 @@ class _signinState extends State<signin> {
       print("sucess");
     } else {
       Fluttertoast.showToast(
-          msg:
-              "Enter a valid email or password\n Password incorrect\n TRY again ",
+          msg: "Enter a valid email or password\nTRY again ",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,

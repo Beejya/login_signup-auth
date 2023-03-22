@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:khalti/khalti.dart';
 
 class Payment extends StatefulWidget {
   String totalCost;
-  Payment({super.key, required this.totalCost});
+
+  Payment({
+    super.key,
+    required this.totalCost,
+  });
 
   @override
   State<Payment> createState() => _PaymentState();
@@ -17,7 +22,20 @@ class _PaymentState extends State<Payment> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Make Payment Khalti"),
+        backgroundColor: Colors.grey[200],
+        leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            )),
+        title: Text(
+          "Make Payment Khalti",
+          style: TextStyle(color: Colors.black),
+        ),
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -40,7 +58,7 @@ class _PaymentState extends State<Payment> {
                   Text(
                     widget.totalCost,
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  )
+                  ),
                 ],
               ),
               SizedBox(

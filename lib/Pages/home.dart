@@ -34,6 +34,15 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Stack(
                   children: [
+                    Text(
+                      "Welcome",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+                    )
+                  ],
+                ),
+                Stack(
+                  children: [
                     InkWell(
                       onTap: () {
                         print(currentIndex);

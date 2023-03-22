@@ -1,5 +1,6 @@
 import 'package:clothywave/Pages/productdetailpage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -48,20 +49,30 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              )),
+          backgroundColor: Colors.grey[200],
           title: Container(
-        color: Colors.white,
-        child: TextField(
-          style: TextStyle(color: Colors.black),
-          controller: _searchController,
-          onChanged: (value) {
-            setState(() {});
-          },
-          decoration: InputDecoration(
-            prefixIcon: Icon(Icons.search),
-            hintText: 'Search here ..',
-          ),
-        ),
-      )),
+            color: Colors.white,
+            child: TextField(
+              style: TextStyle(color: Colors.black),
+              controller: _searchController,
+              onChanged: (value) {
+                setState(() {});
+              },
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.search),
+                hintText: 'Search here ..',
+              ),
+            ),
+          )),
       body: Column(
         children: [
           Expanded(

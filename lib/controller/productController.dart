@@ -12,6 +12,14 @@ class ProductController extends GetxController {
     this.carts.value.remove(product);
   }
 
+  String totalPrice() {
+    double total = 0.0;
+    for (var product in carts) {
+      total += double.parse(product.price) as double;
+    }
+    return total.toString();
+  }
+
   bool checkCart({required Product product}) {
     return carts.value.where((element) => element == product).isNotEmpty;
   }
