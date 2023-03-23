@@ -9,7 +9,9 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'favourite.dart';
 
 class Home extends StatefulWidget {
-  Home({super.key});
+  String name;
+  String email;
+  Home({super.key, required this.name, required this.email});
 
   @override
   State<Home> createState() => _HomeState();
@@ -33,14 +35,26 @@ Route _createRoute() {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
+
   static TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
-  static List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
-    Favourite(),
-    Cart(),
-    Profile(),
-  ];
+
+  static List<Widget> _widgetOptions = <Widget>[];
+
+  @override
+  void initState() {
+    super.initState();
+    _widgetOptions = [
+      HomePage(name: widget.name),
+      Favourite(),
+      Cart(),
+      Profile(
+        email: widget.email,
+        name: widget.name,
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

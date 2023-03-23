@@ -6,7 +6,8 @@ import 'package:clothywave/Pages/women_product.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  String name;
+  HomePage({Key? key, required this.name});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -34,10 +35,15 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Stack(
                   children: [
-                    Text(
-                      "Welcome",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Text(
+                        "Welcome ${widget.name}!",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue),
+                      ),
                     )
                   ],
                 ),

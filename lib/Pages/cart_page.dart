@@ -22,54 +22,77 @@ class _CartState extends State<Cart> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Column(
-                children: productController.carts.map((product) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ProductDetail(
-                                    product: product,
-                                  )),
+          child: productController.carts.isNotEmpty
+              ? Column(
+                  children: [
+                    Column(
+                      children: productController.carts.map((product) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProductDetail(
+                                          product: product,
+                                        )),
+                              );
+                            },
+                            child: ListTile(
+                              leading: Container(
+                                child: Image.network(
+                                  baseUrl + "${product.image}",
+                                  height: 100,
+                                  width: 100,
+                                ),
+                              ),
+                              title: Text(product.name),
+                              subtitle: Text("Rs: ${product.price}"),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        productController.removeToCart(
+                                            product: product);
+                                      });
+                                    },
+                                    icon: Icon(Icons.delete),
+                                    color: Colors.black,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
                         );
-                      },
-                      child: ListTile(
-                        leading: Container(
-                          child: Image.network(
-                            baseUrl + "${product.image}",
-                            height: 100,
-                            width: 100,
+                      }).toList(),
+                    ),
+                  ],
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 200),
+                            child: Text(
+                              'There is no product in cart list\nClick cart icon to  add in cart list',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ),
-                        title: Text(product.name),
-                        subtitle: Text("Rs: ${product.price}"),
-                        trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  productController.removeToCart(
-                                      product: product);
-                                });
-                              },
-                              icon: Icon(Icons.delete),
-                              color: Colors.black,
-                            )
-                          ],
-                        ),
-                      ),
+                      ],
                     ),
-                  );
-                }).toList(),
-              ),
-            ],
-          ),
+                  ],
+                ),
         ),
         floatingActionButton: Column(
           crossAxisAlignment: CrossAxisAlignment.end,

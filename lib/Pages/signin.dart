@@ -1,13 +1,10 @@
 import 'dart:convert';
-
 import 'package:clothywave/Pages/Home..dart';
 import 'package:clothywave/Pages/forgetpassword.dart';
-import 'package:clothywave/Pages/home.dart';
 import 'package:clothywave/Pages/signup.dart';
 import 'package:clothywave/Services/Base_url.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class signin extends StatefulWidget {
@@ -21,8 +18,12 @@ class _signinState extends State<signin> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  String id = '1';
+  String name = "";
+  String email = "";
+
   login() async {
-    var url = baseUrl + "login.php";
+    var url = "${baseUrl}login.php";
     var res = await http.post(Uri.parse(url), body: {
       'email': emailController.text,
       'password': passwordController.text,
@@ -35,7 +36,6 @@ class _signinState extends State<signin> {
     disposee();
     var success = data["success"];
     if (success) {
-      String userName = data['user']['name'];
       Fluttertoast.showToast(
         msg: "User sucessfully\n Logged in ",
         toastLength: Toast.LENGTH_SHORT,
@@ -45,12 +45,21 @@ class _signinState extends State<signin> {
         textColor: Colors.white,
         fontSize: 16.0,
       );
-      // ignore: use_build_context_synchronously
+
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Home()),
+        MaterialPageRoute(builder: (context) => Home(name: name, email: email)),
       );
       print("sucess");
+      var newdata = (data["user"]);
+      setState(() {
+        id = newdata["id"];
+        name = newdata["name"];
+        email = newdata["email"];
+      });
+      print(id);
+      print(name);
+      print(email);
     } else {
       Fluttertoast.showToast(
           msg: "Enter a valid email or password\nTRY again ",

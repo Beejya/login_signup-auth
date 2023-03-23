@@ -2,9 +2,12 @@ import 'package:clothywave/Pages/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({super.key});
+  String email;
+  String name;
+  Profile({super.key, required this.email, required this.name});
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -23,8 +26,8 @@ class _ProfileState extends State<Profile> {
             color: Colors.red,
             child: Text("image"),
           ),
-          Text("Bijay"),
-          Text("Bijaykc@gmail.com"),
+          Text("${widget.name}"),
+          Text("${widget.email}"),
           ElevatedButton(onPressed: () {}, child: Text("Edit")),
           Divider(
             thickness: 3,
@@ -89,24 +92,29 @@ class _ProfileState extends State<Profile> {
               child: Icon(Icons.arrow_right),
             ),
           ),
-          ListTile(
-            leading: Container(
-              width: 30,
-              height: 30,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(200),
-                  color: Colors.grey[300]),
-              child: Icon(Icons.logout),
-            ),
-            title: Text("Log Out"),
-            trailing: Container(
-              width: 30,
-              height: 30,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                color: Colors.grey.withOpacity(0.1),
+          InkWell(
+            onTap: () {
+              Get.to(signin());
+            },
+            child: ListTile(
+              leading: Container(
+                width: 30,
+                height: 30,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(200),
+                    color: Colors.grey[300]),
+                child: Icon(Icons.logout),
               ),
-              child: Icon(Icons.arrow_right),
+              title: Text("Log Out"),
+              trailing: Container(
+                width: 30,
+                height: 30,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: Colors.grey.withOpacity(0.1),
+                ),
+                child: Icon(Icons.arrow_right),
+              ),
             ),
           )
         ],
