@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
   String name;
-  HomePage({Key? key, required this.name});
+  String? id;
+  HomePage({Key? key, required this.name, this.id});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -42,7 +43,7 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: Colors.blue),
+                            color: Colors.blueAccent),
                       ),
                     )
                   ],
@@ -103,10 +104,16 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.74,
                   child: TabBarView(children: [
-                    AllProduct(),
-                    MenProduct(),
-                    WomenProduct(),
-                    KidsProduct(),
+                    AllProduct(id: widget.id),
+                    MenProduct(
+                      id: widget.id,
+                    ),
+                    WomenProduct(
+                      id: widget.id,
+                    ),
+                    KidsProduct(
+                      id: widget.id,
+                    ),
                   ]),
                 )
               ],

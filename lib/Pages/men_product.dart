@@ -11,7 +11,8 @@ import '../controller/favouriteController.dart';
 import '../controller/productController.dart';
 
 class MenProduct extends StatefulWidget {
-  const MenProduct({super.key});
+  String? id;
+  MenProduct({super.key, this.id});
 
   @override
   State<MenProduct> createState() => _MenProductState();
@@ -58,6 +59,7 @@ class _MenProductState extends State<MenProduct> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => ProductDetail(
+                            id: widget.id,
                             product: products[index],
                           )),
                 );
@@ -90,7 +92,7 @@ class _MenProductState extends State<MenProduct> {
                                   Text(
                                     "${products[index].name}",
                                     style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 12,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ],

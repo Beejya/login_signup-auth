@@ -10,7 +10,8 @@ import 'package:http/http.dart' as http;
 import '../controller/favouriteController.dart';
 
 class AllProduct extends StatefulWidget {
-  const AllProduct({super.key});
+  String? id;
+  AllProduct({super.key, this.id});
 
   @override
   State<AllProduct> createState() => _AllProductState();
@@ -57,6 +58,7 @@ class _AllProductState extends State<AllProduct> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => ProductDetail(
+                            id: widget.id,
                             product: products[index],
                           )),
                 );
@@ -89,7 +91,7 @@ class _AllProductState extends State<AllProduct> {
                                   Text(
                                     "${products[index].name}",
                                     style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 12,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ],
@@ -100,11 +102,15 @@ class _AllProductState extends State<AllProduct> {
                                   SizedBox(
                                     width: 5,
                                   ),
-                                  Text(
-                                    "${products[index].price}",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold),
+                                  Wrap(
+                                    children: [
+                                      Text(
+                                        "${products[index].price}",
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),

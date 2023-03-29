@@ -1,3 +1,4 @@
+import 'package:clothywave/Pages/profile.dart';
 import 'package:clothywave/Pages/signin.dart';
 import 'package:clothywave/controller/productController.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ void main() async {
       enabledDebugging: false);
   Get.put(FavouriteController());
   Get.put(ProductController());
+
   runApp(const MyApp());
 }
 

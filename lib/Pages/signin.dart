@@ -48,7 +48,8 @@ class _signinState extends State<signin> {
 
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Home(name: name, email: email)),
+        MaterialPageRoute(
+            builder: (context) => Home(name: name, email: email, id: id)),
       );
       print("sucess");
       var newdata = (data["user"]);

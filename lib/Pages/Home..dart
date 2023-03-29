@@ -11,7 +11,8 @@ import 'favourite.dart';
 class Home extends StatefulWidget {
   String name;
   String email;
-  Home({super.key, required this.name, required this.email});
+  String id;
+  Home({super.key, required this.name, required this.email, required this.id});
 
   @override
   State<Home> createState() => _HomeState();
@@ -45,13 +46,13 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     _widgetOptions = [
-      HomePage(name: widget.name),
+      HomePage(
+        name: widget.name,
+        id: widget.id,
+      ),
       Favourite(),
       Cart(),
-      Profile(
-        email: widget.email,
-        name: widget.name,
-      ),
+      Profile(email: widget.email, name: widget.name, id: widget.id),
     ];
   }
 
@@ -64,7 +65,10 @@ class _HomeState extends State<Home> {
         title: Text(
           "Clothywave",
           style: TextStyle(
-              color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+              letterSpacing: 2,
+              color: Colors.black,
+              fontSize: 32,
+              fontWeight: FontWeight.bold),
         ),
         actions: [
           IconButton(
@@ -116,11 +120,11 @@ class _HomeState extends State<Home> {
                 ),
                 GButton(
                   icon: Icons.shopping_cart,
-                  text: 'My cart',
+                  text: 'Cart',
                 ),
                 GButton(
                   icon: Icons.person,
-                  text: 'Profile',
+                  text: 'Account',
                 ),
               ],
               selectedIndex: _selectedIndex,

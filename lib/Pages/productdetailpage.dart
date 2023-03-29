@@ -1,3 +1,4 @@
+import 'package:clothywave/Pages/all_product.dart';
 import 'package:clothywave/Pages/payment_page.dart';
 import 'package:clothywave/Services/Base_url.dart';
 // import 'package:clothywave/controller/cartController.dart';
@@ -9,7 +10,8 @@ import '../Model/product.dart';
 
 class ProductDetail extends StatefulWidget {
   Product product;
-  ProductDetail({super.key, required this.product});
+  String? id;
+  ProductDetail({super.key, required this.product, this.id});
 
   @override
   State<ProductDetail> createState() => _ProductDetailState();
@@ -149,7 +151,7 @@ class _ProductDetailState extends State<ProductDetail> {
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 45),
                       child: Text(
-                        "Aviliable quantity:",
+                        "Number Aviliable quantity:",
                         style: TextStyle(
                             color: Colors.black38,
                             fontSize: 20,
@@ -159,6 +161,32 @@ class _ProductDetailState extends State<ProductDetail> {
                     Container(
                       child: Text(
                         widget.product.quantity,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 45),
+                      child: Text(
+                        "Aviliable quantity:",
+                        style: TextStyle(
+                            color: Colors.black38,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                    Container(
+                      child: Text(
+                        widget.product.quantity == "0"
+                            ? "Out of stock"
+                            : "In stock",
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16),
                       ),
@@ -212,15 +240,6 @@ class _ProductDetailState extends State<ProductDetail> {
                                   });
                             }
                           });
-
-                          // setState(()
-                          // {
-
-                          //   counter++;
-                          //   getTotalPrice(counter);
-                          // }
-
-                          // );
                         },
                         icon: Icon(Icons.add))
                   ],
@@ -242,40 +261,43 @@ class _ProductDetailState extends State<ProductDetail> {
                   ],
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: SizedBox(
-                        width: 350,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Payment(
+                    if (int.parse(widget.product.quantity) > 0)
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: SizedBox(
+                          width: 345,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Payment(
+                                        id: widget.id,
                                         totalCost: total.toString(),
-                                      )),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.lightBlueAccent,
-                              side: BorderSide(width: 3, color: Colors.white),
-                              elevation: 3,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20)),
-                              padding: EdgeInsets.all(20)),
-                          child: Text(
-                            "Buy Now",
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                                        product: widget.product,
+                                        counter: counter.toString())),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.blueAccent,
+                                side: BorderSide(width: 3, color: Colors.white),
+                                elevation: 3,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                padding: EdgeInsets.all(20)),
+                            child: Text(
+                              "Buy Now",
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ),
                       ),
-                    ),
                   ],
                 )
               ],
