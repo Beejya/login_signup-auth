@@ -10,13 +10,13 @@ import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 
 import 'about_page.dart';
+import 'order_history.dart';
 
 class Profile extends StatefulWidget {
-  String email;
-  String name;
-  String id;
-  Profile(
-      {super.key, required this.email, required this.name, required this.id});
+  String? email;
+  String? name;
+  String? id;
+  Profile({super.key, this.email, this.name, this.id});
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -80,24 +80,29 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
               ),
-              ListTile(
-                leading: Container(
-                  width: 30,
-                  height: 30,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(200),
-                      color: Colors.grey[300]),
-                  child: Icon(Icons.shopping_bag),
-                ),
-                title: Text("Order History"),
-                trailing: Container(
-                  width: 30,
-                  height: 30,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    color: Colors.grey.withOpacity(0.1),
+              InkWell(
+                onTap: () {
+                  Get.to(OrderHistory(id: widget.id));
+                },
+                child: ListTile(
+                  leading: Container(
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(200),
+                        color: Colors.grey[300]),
+                    child: Icon(Icons.shopping_bag),
                   ),
-                  child: Icon(Icons.arrow_right),
+                  title: Text("Order History"),
+                  trailing: Container(
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Colors.grey.withOpacity(0.1),
+                    ),
+                    child: Icon(Icons.arrow_right),
+                  ),
                 ),
               ),
               InkWell(

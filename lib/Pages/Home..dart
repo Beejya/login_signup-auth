@@ -9,10 +9,10 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'favourite.dart';
 
 class Home extends StatefulWidget {
-  String name;
-  String email;
-  String id;
-  Home({super.key, required this.name, required this.email, required this.id});
+  String? name;
+  String? email;
+  String? id;
+  Home({super.key, this.name, this.email, this.id});
 
   @override
   State<Home> createState() => _HomeState();

@@ -7,11 +7,10 @@ import 'package:http/http.dart' as http;
 import '../Services/Base_url.dart';
 
 class EditProfile extends StatefulWidget {
-  String name;
-  String id;
-  String email;
-  EditProfile(
-      {super.key, required this.name, required this.id, required this.email});
+  String? name;
+  String? id;
+  String? email;
+  EditProfile({super.key, this.name, this.id, this.email});
 
   @override
   State<EditProfile> createState() => _EditProfileState();
@@ -34,7 +33,7 @@ class _EditProfileState extends State<EditProfile> {
     }
 
     // Make the HTTP POST request
-    var url = Uri.parse(baseUrl + 'updateprofile.php');
+    var url = Uri.parse(baseUrl + 'updateprfile.php');
     var response = await http.post(url, body: {
       'id': widget.id,
       'name': nameController.text,
@@ -109,7 +108,7 @@ class _EditProfileState extends State<EditProfile> {
                   ),
                 ),
                 // SizedBox(height: 5),
-                Text(widget.email),
+                Text("${widget.email}"),
                 SizedBox(height: 15),
                 Row(
                   children: <Widget>[

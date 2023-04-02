@@ -95,200 +95,246 @@ class _signupState extends State<signup> {
             body: Form(
                 key: _formKey,
                 child: SingleChildScrollView(
-                    child: Column(children: [
-                  Center(
-                    child: Container(
-                      child: Text(
-                        "Clothywave",
-                        style: TextStyle(
-                            fontSize: 45,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.blue.shade600),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                      Container(
+                        child: Text(
+                          "Clothywave",
+                          style: TextStyle(
+                              fontSize: 35,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue.shade600),
+                        ),
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 70.0),
-                        child: Container(
-                          child: Text(
-                            "Create a new Account ",
-                            style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Divider(
+                              thickness: 2,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Text(
+                              'Create a new account',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            ),
+                          ),
+                          Expanded(
+                            child: Divider(
+                              thickness: 2,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.center,
+                      //   crossAxisAlignment: CrossAxisAlignment.center,
+                      //   children: [
+                      //     Container(
+                      //       child: Text(
+                      //         "Create a new Account ",
+                      //         style: TextStyle(
+                      //             fontSize: 15,
+                      //             fontWeight: FontWeight.bold,
+                      //             color: Colors.black),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        width: 350,
+                        child: TextFormField(
+                          controller: emailController,
+                          validator: (value) {
+                            if (value!.isEmpty ||
+                                !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                    .hasMatch(value)) {
+                              return "Enter valid email";
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            suffixIcon: Icon(Icons.email),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            hintText: 'Enter your Email',
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    width: 350,
-                    child: TextFormField(
-                      controller: emailController,
-                      validator: (value) {
-                        if (value!.isEmpty ||
-                            !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                .hasMatch(value)) {
-                          return "Enter valid email";
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        suffixIcon: Icon(Icons.email),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        hintText: 'Enter your Email',
+                      SizedBox(
+                        height: 10,
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    width: 350,
-                    child: TextFormField(
-                      controller: nameController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Enter a Username!';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        suffixIcon: Icon(Icons.email),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        hintText: 'Enter your Username',
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    width: 350,
-                    child: TextFormField(
-                      controller: addressController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Enter your address!';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        suffixIcon: Icon(Icons.email),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        hintText: 'Enter your address',
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    width: 350,
-                    child: TextFormField(
-                      controller: contactController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Enter a contact Number!';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        suffixIcon: Icon(Icons.email),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        hintText: 'Enter your Contact Number',
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    width: 350,
-                    child: TextFormField(
-                      controller: passwordController,
-                      validator: (value) {
-                        if (value != null && value.length < 7) {
-                          return 'Enter minimum 7 character';
-                        }
-                      },
-                      decoration: InputDecoration(
-                        suffixIcon: Icon(Icons.lock),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        hintText: 'Enter your Password',
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    width: 350,
-                    height: 50,
-                    child: ElevatedButton(
-                        style: ButtonStyle(
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ))),
-                        onPressed: () {
-                          register();
-                        },
-                        child: Text(
-                          "Sign Up",
-                          style: TextStyle(fontSize: 20),
-                        )),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Container(
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Container(
-                              child: Text(
-                            "Already  Have an Account?",
-                            style: TextStyle(fontSize: 20),
-                          )),
+                      Container(
+                        width: 350,
+                        child: TextFormField(
+                          controller: nameController,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Enter a Username!';
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            suffixIcon: Icon(Icons.email),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            hintText: 'Enter your Username',
+                          ),
                         ),
-                        Container(
-                          child: ElevatedButton(
-                              style: ButtonStyle(
-                                  shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ))),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const signin()),
-                                );
-                              },
-                              child: Text("Sign In")),
-                        )
-                      ],
-                    ),
-                  )
-                ])))));
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        width: 350,
+                        child: TextFormField(
+                          controller: addressController,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Enter your address!';
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            suffixIcon: Icon(Icons.email),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            hintText: 'Enter your address',
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        width: 350,
+                        child: TextFormField(
+                          controller: contactController,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Enter a contact Number!';
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            suffixIcon: Icon(Icons.email),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            hintText: 'Enter your Contact Number',
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        width: 350,
+                        child: TextFormField(
+                          controller: passwordController,
+                          validator: (value) {
+                            if (value != null && value.length < 7) {
+                              return 'Enter minimum 7 character';
+                            }
+                          },
+                          decoration: InputDecoration(
+                            suffixIcon: Icon(Icons.lock),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            hintText: 'Enter your Password',
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        width: 350,
+                        height: 50,
+                        child: ElevatedButton(
+                            style: ButtonStyle(
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ))),
+                            onPressed: () {
+                              register();
+                            },
+                            child: Text(
+                              "Sign Up",
+                              style: TextStyle(fontSize: 20),
+                            )),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                                child: Text(
+                              "Already  Have an Account?",
+                              style: TextStyle(fontSize: 20),
+                            )),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const signin()),
+                                  );
+                                },
+                                child: Text("Login"))
+                            // Container(
+                            //   child: ElevatedButton(
+                            //       style: ButtonStyle(
+                            //           shape: MaterialStateProperty.all<
+                            //                   RoundedRectangleBorder>(
+                            //               RoundedRectangleBorder(
+                            //         borderRadius: BorderRadius.circular(20),
+                            //       ))),
+                            //       onPressed: () {
+                            //         Navigator.push(
+                            //           context,
+                            //           MaterialPageRoute(
+                            //               builder: (context) => const signin()),
+                            //         );
+                            //       },
+                            //       child: Text("Sign In")),
+                            // )
+                          ],
+                        ),
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Divider(
+                              thickness: 2,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ])))));
   }
 }

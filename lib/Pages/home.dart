@@ -6,7 +6,7 @@ import 'package:clothywave/Pages/women_product.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  String name;
+  String? name;
   String? id;
   HomePage({Key? key, required this.name, this.id});
 

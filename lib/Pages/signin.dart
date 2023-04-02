@@ -103,38 +103,92 @@ class _signinState extends State<signin> {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                // Container(
+                //   child: ,
+                // ),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Container(
+                      child: Text(
+                        "Clothywave",
+                        style: TextStyle(
+                            fontSize: 45,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue.shade600),
+                      ),
+                    ),
+                  ),
+                ),
                 Center(
                   child: Container(
                     child: Text(
-                      "Clothywave",
+                      "Discover new Cloth  New Passion  New You",
                       style: TextStyle(
-                          fontSize: 45,
+                          fontSize: 15,
                           fontWeight: FontWeight.bold,
-                          color: Colors.blue.shade600),
+                          color: Colors.black),
+                    ),
+                  ),
+                ),
+
+                Center(
+                  child: Container(
+                    width: 330,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('Assets/images/cloth2.jpg'),
+                          fit: BoxFit.fill),
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 15,
                 ),
                 Row(
-                  children: [
+                  children: <Widget>[
+                    Expanded(
+                      child: Divider(
+                        thickness: 2,
+                        color: Colors.black,
+                      ),
+                    ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Container(
-                        child: Text(
-                          "Welcome !",
-                          style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
-                        ),
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Text(
+                        'Welcome back !',
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
+                    ),
+                    Expanded(
+                      child: Divider(
+                        thickness: 2,
+                        color: Colors.black,
                       ),
                     ),
                   ],
                 ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   crossAxisAlignment: CrossAxisAlignment.center,
+                //   children: [
+                //     Container(
+                //       child: Text(
+                //         "Welcome back!",
+                //         style: TextStyle(
+                //             fontSize: 20,
+                //             fontWeight: FontWeight.bold,
+                //             color: Colors.black),
+                //       ),
+                //     ),
+                //   ],
+                // ),
                 SizedBox(
-                  height: 60,
+                  height: 10,
                 ),
                 Container(
                   width: 350,
@@ -157,7 +211,7 @@ class _signinState extends State<signin> {
                   ),
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 20,
                 ),
                 Container(
                   width: 350,
@@ -178,7 +232,7 @@ class _signinState extends State<signin> {
                   ),
                 ),
                 SizedBox(
-                  height: 60,
+                  height: 40,
                 ),
                 Container(
                   width: 350,
@@ -221,36 +275,46 @@ class _signinState extends State<signin> {
                   ],
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 25,
                 ),
                 Container(
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Container(
-                            child: Text(
-                          "Don't  Have an Account?",
-                          style: TextStyle(fontSize: 20),
-                        )),
-                      ),
                       Container(
-                        child: ElevatedButton(
-                            style: ButtonStyle(
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ))),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => signup()),
-                              );
-                            },
-                            child: Text("Sign Up")),
-                      )
+                          child: Text(
+                        "Don't  Have an Account?",
+                        style: TextStyle(fontSize: 20),
+                      )),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => signup()),
+                            );
+                          },
+                          child: Text(
+                            "Create new",
+                            style: TextStyle(fontSize: 16),
+                          ))
+                      // Container(
+                      //   child: ElevatedButton(
+                      //       style: ButtonStyle(
+                      //           shape: MaterialStateProperty.all<
+                      //                   RoundedRectangleBorder>(
+                      //               RoundedRectangleBorder(
+                      //         borderRadius: BorderRadius.circular(20),
+                      //       ))),
+                      //       onPressed: () {
+                      //         Navigator.push(
+                      //           context,
+                      //           MaterialPageRoute(
+                      //               builder: (context) => signup()),
+                      //         );
+                      //       },
+                      //       child: Text("Sign Up")),
+                      // )
                     ],
                   ),
                 )

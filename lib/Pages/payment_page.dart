@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:khalti/khalti.dart';
 import 'package:http/http.dart' as http;
 import '../Model/product.dart';
+import 'order_history.dart';
 
 enum payment { online_payment, cash_on_delivery }
 
@@ -46,6 +47,17 @@ class _PaymentState extends State<Payment> {
       return;
     }
     _formKey.currentState!.save();
+  }
+
+  Future<void> updateOrder() async {
+    final url = baseUrl +
+        'updateproductquantity.php'; // replace with your PHP file's URL
+    final response = await http.post(Uri.parse(url));
+    if (response.statusCode == 200) {
+      print('POST request successful');
+    } else {
+      print('POST request failed with status: ${response.statusCode}.');
+    }
   }
 
   Future<void> _insertData() async {
@@ -331,9 +343,6 @@ class _PaymentState extends State<Payment> {
                     children: [
                       Row(
                         children: [
-                          // Text("online payment",
-                          //     style: TextStyle(
-                          //         fontSize: 16, fontWeight: FontWeight.w900)),
                           Radio(
                             value: payment.online_payment,
                             groupValue: selectedstatus,
@@ -514,6 +523,7 @@ class _PaymentState extends State<Payment> {
                           onPressed: () {
                             _submit();
                             _insertData();
+                            // updateOrder();
                           },
                           icon: Icon(Icons.shopping_bag),
                           label: Text('Place Order'),
