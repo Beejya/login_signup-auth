@@ -51,7 +51,7 @@ class _HomeState extends State<Home> {
         id: widget.id,
       ),
       Favourite(),
-      Cart(),
+      Cart(id: widget.id),
       Profile(email: widget.email, name: widget.name, id: widget.id),
     ];
   }

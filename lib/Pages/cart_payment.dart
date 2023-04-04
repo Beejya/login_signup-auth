@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:clothywave/Pages/cart_page.dart';
 import 'package:clothywave/Services/Base_url.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,47 +7,21 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:khalti_flutter/khalti_flutter.dart';
 import '../Model/product.dart';
+import '../controller/productController.dart';
 
 enum payment { online_payment, cash_on_delivery }
 
-class Payment extends StatefulWidget {
-  String totalCost;
-  Product product;
-  String counter;
+class CartPayment extends StatefulWidget {
   String? id;
-
-  Payment(
-      {super.key,
-      required this.totalCost,
-      required this.product,
-      required this.counter,
-      this.id});
+  String? totalCost;
+  CartPayment({super.key, this.totalCost, this.id});
 
   @override
-  State<Payment> createState() => _PaymentState();
+  State<CartPayment> createState() => _CartPaymentState();
 }
 
-class _PaymentState extends State<Payment> {
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController pinCodeController = TextEditingController();
-  TextEditingController contactNumber = TextEditingController();
-  TextEditingController deliveryCity = TextEditingController();
-  TextEditingController deliveryAddress = TextEditingController();
-
-  payment selectedstatus = payment.online_payment;
-
-  bool _forcash = false;
-  bool _foronline = false;
-
-  var _formKey = GlobalKey<FormState>();
-
-  void _submit() {
-    final isValid = _formKey.currentState!.validate();
-    if (!isValid) {
-      return;
-    }
-    _formKey.currentState!.save();
-  }
+class _CartPaymentState extends State<CartPayment> {
+  final productController = Get.find<ProductController>();
 
   Future<void> _insertData() async {
     if (contactNumber.text.isEmpty ||
@@ -55,17 +30,21 @@ class _PaymentState extends State<Payment> {
       return;
     }
 
-    var uploadurl = Uri.parse("${baseUrl}orders.php");
+    var uploadurl = Uri.parse("${baseUrl}cartorder.php");
     try {
       var response = await http.post(uploadurl, body: {
-        'total_price': "${widget.totalCost.toString()}",
-        'quantity_order': "${widget.counter.toString()}",
-        'product_id': "${widget.product.id.toString()}",
+        'total_price':
+            productController.carts.map((product) => product.price).join(','),
+        'quantity_order': '1',
+        'product_id':
+            productController.carts.map((product) => product.id).join(','),
         'contact_number': contactNumber.text,
         'delivery_city': deliveryCity.text,
         'delivery_address': deliveryAddress.text,
         'payment_status': selectedstatus.toString(),
-        'vendor_id': "${widget.product.vendor_id.toString()}",
+        'vendor_id': productController.carts
+            .map((product) => product.vendor_id)
+            .join(','),
         'userid': "${widget.id.toString()}"
       });
 
@@ -108,6 +87,27 @@ class _PaymentState extends State<Payment> {
     deliveryCity.clear();
   }
 
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController pinCodeController = TextEditingController();
+  TextEditingController contactNumber = TextEditingController();
+  TextEditingController deliveryCity = TextEditingController();
+  TextEditingController deliveryAddress = TextEditingController();
+
+  payment selectedstatus = payment.online_payment;
+
+  bool _forcash = false;
+  bool _foronline = false;
+
+  var _formKey = GlobalKey<FormState>();
+
+  void _submit() {
+    final isValid = _formKey.currentState!.validate();
+    if (!isValid) {
+      return;
+    }
+    _formKey.currentState!.save();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,7 +122,7 @@ class _PaymentState extends State<Payment> {
               color: Colors.black,
             )),
         title: Text(
-          "Order Detail",
+          "Buy all Cart product",
           style: TextStyle(color: Colors.black),
         ),
         automaticallyImplyLeading: false,
@@ -149,76 +149,50 @@ class _PaymentState extends State<Payment> {
                         width: 10,
                       ),
                       Text(
-                        widget.totalCost,
+                        widget.totalCost.toString(),
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
+                  Column(children: [
+                    Column(
+                      children: [
+                        Column(
+                          children: productController.carts.map((product) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: InkWell(
+                                child: ListTile(
+                                  leading: Container(
+                                    child: Image.network(
+                                      baseUrl + "${product.image}",
+                                      height: 100,
+                                      width: 100,
+                                    ),
+                                  ),
+                                  title: Text(product.name),
+                                  subtitle: Text("Rs: ${product.price}"),
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ],
+                    )
+                  ]),
                   SizedBox(
-                    height: 20,
+                    height: 5,
                   ),
-                  Row(
-                    children: [
-                      Container(
-                        child: Text(
-                          "Product Name:",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        widget.product.name,
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        child: Text(
-                          "Quantity Order:",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        widget.counter,
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      Container(
-                        child: Text(
-                          "Product Id:",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        widget.product.id,
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                  Container(
+                    child: Text(
+                      "Enter detail to place order",
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w900),
+                    ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 5,
                   ),
                   Container(
                     decoration: BoxDecoration(
@@ -228,7 +202,7 @@ class _PaymentState extends State<Payment> {
                     child: TextFormField(
                       controller: contactNumber,
                       keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Enter contact Number",
                         contentPadding: EdgeInsets.symmetric(horizontal: 16),
                         border: InputBorder.none,
@@ -414,9 +388,7 @@ class _PaymentState extends State<Payment> {
                         width: 320,
                         child: ElevatedButton.icon(
                           onPressed: () {
-                            _submit();
                             _insertData();
-                            // updateOrder();
                           },
                           icon: Icon(Icons.shopping_bag),
                           label: Text('Place Order'),

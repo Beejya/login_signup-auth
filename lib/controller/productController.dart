@@ -23,4 +23,6 @@ class ProductController extends GetxController {
   bool checkCart({required Product product}) {
     return carts.value.where((element) => element == product).isNotEmpty;
   }
+
+  map(String Function(dynamic product) param0) {}
 }

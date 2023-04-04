@@ -48,4 +48,6 @@ class Product {
         "quantity": quantity,
         "vendor_id": vendor_id,
       };
+
+  toMap() {}
 }

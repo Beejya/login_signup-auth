@@ -54,7 +54,7 @@ class _OrderHistoryState extends State<OrderHistory> {
           backgroundColor: Colors.grey[200],
           elevation: 0,
           title: Text(
-            "About Clothywave",
+            "Order Details",
             style: TextStyle(color: Colors.black),
           )),
       body: FutureBuilder(

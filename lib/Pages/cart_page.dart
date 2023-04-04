@@ -1,15 +1,14 @@
+import 'package:clothywave/Model/product.dart';
+import 'package:clothywave/Pages/cart_payment.dart';
 import 'package:clothywave/Pages/productdetailpage.dart';
 import 'package:clothywave/Services/Base_url.dart';
 import 'package:clothywave/controller/productController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:http/http.dart' as http;
-
 class Cart extends StatefulWidget {
-  const Cart({
-    super.key,
-  });
+  String? id;
+  Cart({super.key, this.id});
 
   @override
   State<Cart> createState() => _CartState();
@@ -110,7 +109,17 @@ class _CartState extends State<Cart> {
               height: 20,
             ),
             FloatingActionButton.extended(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CartPayment(
+                            id: widget.id,
+                            totalCost:
+                                productController.totalPrice().toString(),
+                          )),
+                );
+              },
               label: Text("Buy all product"),
               icon: Icon(Icons.shopping_cart),
               backgroundColor: Colors.pink,
