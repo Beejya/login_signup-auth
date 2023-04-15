@@ -1,11 +1,8 @@
-import 'package:clothywave/Pages/profile.dart';
 import 'package:clothywave/Pages/signin.dart';
 import 'package:clothywave/controller/productController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:khalti/khalti.dart';
 import 'package:khalti_flutter/khalti_flutter.dart';
-
 import 'controller/favouriteController.dart';
 
 void main() async {

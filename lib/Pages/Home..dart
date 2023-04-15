@@ -1,5 +1,6 @@
 import 'package:clothywave/Pages/cart_page.dart';
 import 'package:clothywave/Pages/home.dart';
+import 'package:clothywave/Pages/notification.dart';
 import 'package:clothywave/Pages/profile.dart';
 import 'package:clothywave/Pages/searchpage.dart';
 
@@ -77,6 +78,17 @@ class _HomeState extends State<Home> {
               },
               icon: Icon(
                 Icons.search,
+                color: Colors.black,
+              )),
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Notification_page()),
+                );
+              },
+              icon: Icon(
+                Icons.notifications,
                 color: Colors.black,
               ))
         ],

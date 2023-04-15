@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:clothywave/Pages/confirm_order.dart';
 import 'package:clothywave/Pages/edit_profile.dart';
 import 'package:clothywave/Pages/signin.dart';
 import 'package:clothywave/Services/Base_url.dart';
@@ -94,6 +95,31 @@ class _ProfileState extends State<Profile> {
                     child: Icon(Icons.shopping_bag),
                   ),
                   title: Text("Order History"),
+                  trailing: Container(
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Colors.grey.withOpacity(0.1),
+                    ),
+                    child: Icon(Icons.arrow_right),
+                  ),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Get.to(ConfirmOrder(id: widget.id));
+                },
+                child: ListTile(
+                  leading: Container(
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(200),
+                        color: Colors.grey[300]),
+                    child: Icon(Icons.check_box),
+                  ),
+                  title: Text("Order Confirmed"),
                   trailing: Container(
                     width: 30,
                     height: 30,
